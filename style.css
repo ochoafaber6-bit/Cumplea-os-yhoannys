@@ -10,8 +10,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* El fondo de rosas acuarela */
-  background: url('1000886896.jpg') no-repeat center center fixed;
+  /* NOMBRE CORREGIDO DEL FONDO DE ROSAS */
+  background: url('fondo-pastel-polvo-elementos-dibujados-mano_52683-42120.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
@@ -22,11 +22,11 @@ body {
   display: flex;
   width: 95%;
   max-width: 1100px;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: 30px;
-  box-shadow: 0 20px 65px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 65px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 30px;
   gap: 30px;
@@ -171,7 +171,7 @@ body {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
+  0 { transform: scale(1); }
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
@@ -227,7 +227,7 @@ body {
   margin-top: auto;
 }
 
-/* Animación de apertura */
+/* Animación de apertura del sobre */
 .envelope-container.open .envelope-flap {
   transform: rotateX(180deg);
   z-index: 1;
@@ -252,16 +252,17 @@ body {
   transform: translate(-50%, -20%) scale(0.5);
 }
 
-/* --- CARRUSEL DE FOTOS --- */
+/* --- CARRUSEL DE FOTOS (CON AJUSTE DE FOTOS COMPLETAS) --- */
 .carousel-container {
   width: 320px;
-  height: 220px;
+  height: 320px; /* Incrementamos la altura para fotos verticales */
   overflow: hidden;
   border-radius: 15px;
   border: 4px solid white;
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
   position: relative;
-  background: #fcfcfc;
+  /* Fondo oscuro elegante difuminado para rellenar los bordes vacíos */
+  background: rgba(0, 0, 0, 0.05); 
 }
 
 .carousel-track {
@@ -288,9 +289,12 @@ body {
 }
 
 .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  /* "contain" hace que la foto se encoja o agrande para verse COMPLETA sin recortar */
+  object-fit: contain; 
 }
 
 /* Diseño adaptativo para dispositivos móviles */
