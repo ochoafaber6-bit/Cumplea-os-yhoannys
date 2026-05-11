@@ -31,6 +31,9 @@ body {
   padding: 30px;
   gap: 30px;
   align-items: center;
+  /* IMPORTANTE: z-index base para el contenedor */
+  position: relative;
+  z-index: 1; 
 }
 
 /* --- COLUMNA DE LA TORTA (IZQUIERDA) --- */
@@ -94,7 +97,9 @@ body {
   height: 200px;
   perspective: 1000px;
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 50px; /* Un poco más de espacio arriba */
+  /* IMPORTANTE: z-index mayor que el carrusel */
+  z-index: 10; 
 }
 
 .envelope {
@@ -171,12 +176,12 @@ body {
 }
 
 @keyframes pulse {
-  0 { transform: scale(1); }
+  0% { transform: scale(1); }
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
-/* Carta emergente */
+/* Carta emergente CORREGIDA */
 .letter {
   position: absolute;
   bottom: 0;
@@ -187,8 +192,10 @@ body {
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 0 15px rgba(0,0,0,0.05);
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s, height 0.6s ease;
-  z-index: 2;
+  /* Ajuste de transición para mejor fluidez */
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.1s, height 0.6s ease;
+  /* z-index bajo cuando está cerrado */
+  z-index: 2; 
   overflow: hidden;
 }
 
@@ -227,7 +234,7 @@ body {
   margin-top: auto;
 }
 
-/* Animación de apertura del sobre */
+/* Animación de apertura del sobre CORREGIDA */
 .envelope-container.open .envelope-flap {
   transform: rotateX(180deg);
   z-index: 1;
@@ -235,10 +242,12 @@ body {
 }
 
 .envelope-container.open .letter {
-  transform: translateY(-170px);
-  height: 300px;
-  z-index: 5;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  /* Baja un poco más al abrirse para no chocar arriba */
+  transform: translateY(-160px); 
+  height: 320px;
+  /* IMPORTANTE: z-index alto cuando está abierto para estar al frente */
+  z-index: 15; 
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
 .envelope-container.open .letter-inner {
@@ -252,7 +261,7 @@ body {
   transform: translate(-50%, -20%) scale(0.5);
 }
 
-/* --- CARRUSEL DE FOTOS (CON AJUSTE DE FOTOS COMPLETAS) --- */
+/* --- CARRUSEL DE FOTOS (FOTOS COMPLETAS) --- */
 .carousel-container {
   width: 320px;
   height: 320px; /* Incrementamos la altura para fotos verticales */
@@ -263,6 +272,8 @@ body {
   position: relative;
   /* Fondo oscuro elegante difuminado para rellenar los bordes vacíos */
   background: rgba(0, 0, 0, 0.05); 
+  /* z-index menor que el sobre abierto */
+  z-index: 5; 
 }
 
 .carousel-track {
@@ -312,5 +323,6 @@ body {
   }
   .envelope-container {
     margin-top: 20px;
+    z-index: 20; /* Prioridad aún mayor en móvil */
   }
 }
